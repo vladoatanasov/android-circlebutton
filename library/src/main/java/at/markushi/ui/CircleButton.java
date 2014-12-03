@@ -34,6 +34,8 @@ public class CircleButton extends ImageView {
     private int pressedColor;
     private ObjectAnimator pressedAnimator;
 
+    private boolean disableRing = false;
+
     public CircleButton(Context context) {
         super(context);
         init(context, null);
@@ -52,6 +54,9 @@ public class CircleButton extends ImageView {
     @Override
     public void setPressed(boolean pressed) {
         super.setPressed(pressed);
+
+        if(disableRing)
+            return;
 
         if (circlePaint != null) {
             circlePaint.setColor(pressed ? pressedColor : defaultColor);
@@ -142,6 +147,7 @@ public class CircleButton extends ImageView {
             color = a.getColor(R.styleable.CircleButton_cb_color, color);
             ringColor = a.getColor(R.styleable.CircleButton_cb_ring_color, ringColor);
             pressedRingWidth = (int) a.getDimension(R.styleable.CircleButton_cb_pressedRingWidth, pressedRingWidth);
+            disableRing = a.getBoolean(R.styleable.CircleButton_cb_disable_ring, disableRing);
             a.recycle();
         }
 
@@ -159,5 +165,13 @@ public class CircleButton extends ImageView {
     private int getHighlightColor(int color, int amount) {
         return Color.argb(Math.min(255, Color.alpha(color)), Math.min(255, Color.red(color) + amount),
                 Math.min(255, Color.green(color) + amount), Math.min(255, Color.blue(color) + amount));
+    }
+
+    public void setDisableRing(boolean disableRing) {
+        this.disableRing = disableRing;
+    }
+
+    public boolean getDisableRing() {
+        return this.disableRing;
     }
 }

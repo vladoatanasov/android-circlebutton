@@ -4,5 +4,6 @@
         <attr name="cb_color" format="color" />
         <attr name="cb_pressedRingWidth" format="dimension" />
         <attr name="cb_ring_color" format="color" />
+        <attr name="cb_disable_ring" format="boolean" />
     </declare-styleable>
 </resources>

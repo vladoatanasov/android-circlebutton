@@ -136,7 +136,7 @@ public class CircleButton extends ImageView {
                 .getDisplayMetrics());
 
         int color = Color.BLACK;
-        int ringColor = 0;
+        int ringColor = Integer.MAX_VALUE;
         if (attrs != null) {
             final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleButton);
             color = a.getColor(R.styleable.CircleButton_cb_color, color);
@@ -145,7 +145,7 @@ public class CircleButton extends ImageView {
             a.recycle();
         }
 
-        if (ringColor != 0)
+        if (ringColor != Integer.MAX_VALUE)
             setColor(color, ringColor);
         else
             setColor(color);
